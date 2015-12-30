@@ -9,14 +9,8 @@ export class Diagram extends React.Component<{}, {}> {
     title: React.PropTypes.string,
   };
 
-  constructor () {
-    super();
-  }
-
-  getDefaultProps () {
-    return {
-      title: "Unknown diagram",
-    };
+  constructor (props) {
+    super(props);
   }
 
   render () {
