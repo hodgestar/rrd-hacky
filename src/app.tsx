@@ -27,4 +27,5 @@ export class App extends React.Component<IAppState, IAppState> {
     
 }
 
-ReactDOM.render(React.createElement(App, null), document.getElementById("react-root"));
+//ReactDOM.render(React.createElement(App, null), document.getElementById("react-root"));
+ReactDOM.render(<App />, document.getElementById("react-root"));
