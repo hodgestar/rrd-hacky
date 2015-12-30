@@ -1,0 +1,33 @@
+{
+  "name": "rrd-hacky",
+  "version": "0.0.0a",
+  "description": "Playing with React, Redux & d3.",
+  "main": "app.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hodgestar/rrd-hacky.git"
+  },
+  "keywords": [
+    "hacky"
+  ],
+  "author": "Simon & Richard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hodgestar/rrd-hacky/issues"
+  },
+  "homepage": "https://github.com/hodgestar/rrd-hacky",
+  "dependencies": {
+    "react": "~0.14.3",
+    "react-dom": "~0.14.3",
+    "react-redux": "~4.0.2",
+    "redux": "~3.0.5"
+  },
+  "devDependencies": {
+    "gulp": "~3.9.0",
+    "gulp-babel": "~6.1.1",
+    "gulp-typescript": "~2.10.0"
+  }
+}
