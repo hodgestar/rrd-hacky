@@ -35,9 +35,18 @@ export class Diagram extends React.Component<{}, {}> {
       Diagram._createDiagram(el, this.getChartState());
   }
 
-  public componentDidUpdate () {
+  //DO NOT USE
+  //React will keep removing the existing d3 DOM.
+//   public componentDidUpdate () {
+//       var el = this.getDOMNode();
+//       Diagram._updateDiagram(el, this.getChartState());
+//   }
+  
+  //RATHER UPDATE IN THE BELOW METHOD and RETURN false.
+  public shouldComponentUpdate() {
       var el = this.getDOMNode();
       Diagram._updateDiagram(el, this.getChartState());
+      return false;
   }
 
   public getChartState () {
