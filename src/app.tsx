@@ -5,13 +5,15 @@ import * as ReactDOM from 'react-dom';
 var sampleData = [
     {
         title: "Node 1",
+        id: 1,
         w: 50, h: 50,
         x: 50, y: 50,
     },
     {
         title: "Node 2",
+        id: 2,
         w: 50, h: 50,
-        x: 50, y: 50,
+        x: 150, y: 150,
     },
 ];
 

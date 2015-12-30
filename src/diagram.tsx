@@ -15,15 +15,41 @@ export class Diagram extends React.Component<{}, {}> {
   }
 
   private static _createDiagram (el, state) {
-      // TODO
+      var svg = d3.select(el)
+          .attr('width', 400)
+          .attr('height', 400);
+      svg.append('g')
+          .attr('class', 'diagram-nodes');
+      Diagram._updateDiagram(el, state);
   }
 
   private static _updateDiagram (el, state) {
-      // TODO
+      var g = d3.select(el).selectAll('.diagram-nodes');
+
+      var node = g.selectAll('.diagram-node')
+          .data(state.data, function(d) { return d.id; });
+
+        // enter
+        node.enter()
+            .append('rect')
+            .attr('class', 'diagram-node');
+
+        // enter and update
+        node
+            .attr('x', function(d) { return d.x; })
+            .attr('y', function(d) { return d.y; })
+            .attr('width', function(d) { return d.w; })
+            .attr('height', function(d) { return d.h; });
+
+        // exit
+        node.exit()
+            .remove();
+
   }
 
   private static _destroyDiagram (el) {
-      // TODO
+      var svg = d3.select(el);
+      svg.remove();
   }
 
   private getDOMNode () {
@@ -53,9 +79,7 @@ export class Diagram extends React.Component<{}, {}> {
 
   public render () {
     return (
-      <div>
-        Like Foo
-      </div>
+      <svg class="diagram"></svg>
     );
   }
 }
