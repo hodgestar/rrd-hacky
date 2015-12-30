@@ -1,5 +1,5 @@
 import {Diagram} from './diagram';
-import * as React from 'react';
+import * as React  from 'react';
 import * as ReactDOM from 'react-dom';
 
 var sampleData = [];
@@ -9,11 +9,15 @@ interface IAppState {
     
 }
 
-class App extends React.Component<IAppState, IAppState> {
+export class App extends React.Component<IAppState, IAppState> {
     
-    public getInitialState(): IAppState {
-        return {data: sampleData};
+    constructor(props) {
+        super(props);
     }
+    
+    public state: IAppState = {
+        data: sampleData
+    };
     
     public render() {
         return (<div>

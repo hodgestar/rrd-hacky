@@ -21,8 +21,9 @@ export class Diagram extends React.Component<{}, {}> {
 
   render () {
     return (
-      <Diagram>
-      </Diagram>
+      <div>
+        Like Foo
+      </div>
     );
   }
 }
