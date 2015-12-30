@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "experimentalAsyncFunctions": true,
+    "removeComments": false,
+    "noImplicitAny": false,
+    "jsx": "react"
+  }
+}
