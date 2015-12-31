@@ -1,4 +1,8 @@
-import {Diagram} from './diagram';
+/// <reference path="../typings/tsd.d.ts" />
+// Please Ignore the above line.  It helps with intellisense in my dumb text editor.
+
+//import {Diagram} from './diagram';
+import {Diagram} from './react-diagram';
 import * as React  from 'react';
 import * as ReactDOM from 'react-dom';
 
@@ -32,14 +36,8 @@ export interface IAppNode {
 
 export class App extends React.Component<IAppState, {}> {
 
-    constructor(props: IAppState) {
-        super(props);
-    }
-
     public render() {
-        return <div>
-            <Diagram data={ this.props.data } />
-        </div>;
+        return <Diagram data={ this.props.data } />;
     }
 
 }
