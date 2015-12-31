@@ -17,28 +17,31 @@ var sampleData = [
     },
 ];
 
-interface IAppState {
-    data: any[];
-
+export interface IAppState {
+    data: IAppNode[];
 }
 
-export class App extends React.Component<IAppState, IAppState> {
+export interface IAppNode {
+    title: string;
+    id: number;
+    w: number;
+    h: number;
+    x: number;
+    y: number;
+}
 
-    constructor(props) {
+export class App extends React.Component<IAppState, {}> {
+
+    constructor(props: IAppState) {
         super(props);
     }
 
-    public state: IAppState = {
-        data: sampleData
-    };
-
     public render() {
-        return (<div>
-            <Diagram data={ this.state.data } />
-        </div>);
+        return <div>
+            <Diagram data={ this.props.data } />
+        </div>;
     }
 
 }
 
-//ReactDOM.render(React.createElement(App, null), document.getElementById("react-root"));
-ReactDOM.render(<App />, document.getElementById("react-root"));
+ReactDOM.render(<App data={ sampleData } />, document.getElementById("react-root"));

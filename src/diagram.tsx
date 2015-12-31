@@ -1,8 +1,11 @@
+/// <reference path="../typings/tsd.d.ts" />
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as d3 from 'd3';
+import { IAppState, IAppNode } from './app';
 
-export class Diagram extends React.Component<{}, {}> {
+export class Diagram extends React.Component<IAppState, {}> {
 
   static displayName = 'Diagram';
 
@@ -27,7 +30,7 @@ export class Diagram extends React.Component<{}, {}> {
       var g = d3.select(el).selectAll('.diagram-nodes');
 
       var node = g.selectAll('.diagram-node')
-          .data(state.data, function(d) { return d.id; });
+          .data(state.data, function(d: IAppNode) { return d.id.toString(); });
 
         // enter
         node.enter()
@@ -80,7 +83,7 @@ export class Diagram extends React.Component<{}, {}> {
 
   public render () {
     return (
-      <svg class="diagram"></svg>
+      <svg className="diagram"></svg>
     );
   }
 }
