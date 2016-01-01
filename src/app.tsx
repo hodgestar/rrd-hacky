@@ -34,7 +34,7 @@ export interface IAppNode {
     y: number;
 }
 
-export class App extends React.Component<IAppState, {}> {
+class App extends React.Component<IAppState, {}> {
 
     public render() {
         return <Diagram data={ this.props.data } />;
