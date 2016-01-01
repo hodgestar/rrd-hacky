@@ -18,7 +18,7 @@ export class Diagram extends React.Component<IAppState, {}> {
 
   public render () {
     return (
-      <svg className="diagram" width="400" height="400">
+      <svg className="diagram">
         <g className="diagram-nodes">
             {
                 this.props.data.map((d, i, arr) =>

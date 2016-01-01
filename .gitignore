@@ -29,3 +29,4 @@ jspm_packages
 
 # Generated Javascript files
 js/*.js
+css

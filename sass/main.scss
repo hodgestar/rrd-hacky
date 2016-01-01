@@ -1,0 +1,47 @@
+
+@mixin calc($prop, $val) {
+  @each $pre in -webkit-, -moz- {
+    #{$prop}: $pre + calc(#{$val});
+  }
+  #{$prop}: calc(#{$val});
+}
+
+html, body {
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+html, body, #react-root, .app-container  {
+    height: 100%;
+}
+
+.toolbar {
+    height: 50px;
+    width: 100%;
+}
+
+.bottom-container {
+    width: 100%;
+    @include calc(height, '100% - 50px');
+}
+
+.bottom-component {
+    height: 100%;
+    float: left;
+}
+
+.toolbox {
+    @extend .bottom-component;
+    width: 100px;
+}
+
+.diagram {
+    @extend .bottom-component;
+    @include calc(width, '100% - 200px');
+}
+
+.properties {
+    @extend .bottom-component;
+    width: 100px;
+}

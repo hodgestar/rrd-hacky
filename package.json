@@ -27,13 +27,14 @@
     "redux": "~3.0.5"
   },
   "devDependencies": {
+    "babel-preset-es2015": "~6.3.13",
     "gulp": "~3.9.0",
     "gulp-babel": "~6.1.1",
-    "gulp-typescript": "~2.10.0",
+    "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "~1.6.0",
-    "babel-preset-es2015": "~6.3.13",
-    "tsd": "~0.6.5",
-    "jspm": "^0.16.18"
+    "gulp-typescript": "~2.10.0",
+    "jspm": "^0.16.18",
+    "tsd": "~0.6.5"
   },
   "jspm": {
     "configFile": "systemjs-config.js",

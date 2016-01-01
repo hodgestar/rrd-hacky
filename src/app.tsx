@@ -10,13 +10,13 @@ var sampleData = [
     {
         title: "Node 1",
         id: 1,
-        w: 50, h: 50,
+        w: 80, h: 40,
         x: 50, y: 50,
     },
     {
         title: "Node 2",
         id: 2,
-        w: 50, h: 50,
+        w: 80, h: 40,
         x: 150, y: 150,
     },
 ];
@@ -37,7 +37,16 @@ export interface IAppNode {
 class App extends React.Component<IAppState, {}> {
 
     public render() {
-        return <Diagram data={ this.props.data } />;
+        return (
+            <div className="app-container">
+                <div className="toolbar">Toolbar</div>
+                <div className="bottom-container">
+                    <div className="toolbox">Toolbox</div>
+                    <Diagram data={ this.props.data } />
+                    <div className="properties">Properties</div>
+                </div>
+            </div>
+        );
     }
 
 }
