@@ -13,18 +13,18 @@ var gulp = require('gulp'),
     through = require('through2').obj,
     lazypipe = require('lazypipe');
 
-var srcPath = 'src/**.ts*',
+var srcPath = 'src/**/*.ts*',
     jsBuildPath = 'js',
-    jsOutputPath = jsBuildPath + '/**.js',
+    jsOutputPath = jsBuildPath + '/**/*.js',
     typingsPath = 'typings/tsd.d.ts',
-    sassPath = 'sass/**.scss',
+    sassPath = 'sass/**/*.scss',
     sassBuildPath = 'css',
-    sassOutputPath = sassBuildPath + '/**.css';
+    sassOutputPath = sassBuildPath + '/**/*.css';
 
 function onError(err) { 
     gutil.beep();
     gutil.log(gutil.colors.underline(gutil.colors.red('ERROR:')),
-        gutil.colors.cyan(err.plugin), ' - ', err.message);
+        gutil.colors.cyan(err.plugin), '-', err.message);
     this.emit('end');
 };
 
@@ -45,11 +45,18 @@ function ifNonEmptyAddFiles(paths) {
 gulp.task('clean', ['clean-ts', 'clean-sass']);
 
 gulp.task('clean-ts', function() {
-    return del([jsOutputPath]);
+    gutil.log('clean-ts', jsOutputPath);
+    return del([jsOutputPath])
+        .then(paths => {
+            gutil.log('clean-ts: ', jsOutputPath, '\nDeleted files and folders:\n' + paths.join('\n'));
+        });
 });
 
 gulp.task('clean-sass', function() {
-    return del([sassOutputPath]);
+    return del([sassOutputPath])
+        .then(paths => {
+            gutil.log('clean-sass: ', jsOutputPath, '\n', 'Deleted files and folders:\n', paths.join('\n'));
+        });
 });
 
 gulp.task('build', ['build-ts', 'build-sass']);

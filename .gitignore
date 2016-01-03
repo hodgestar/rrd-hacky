@@ -28,5 +28,6 @@ node_modules
 jspm_packages
 
 # Generated Javascript files
-js/*.js
-css
+js/**/*.js
+css/*.css
+.vscode

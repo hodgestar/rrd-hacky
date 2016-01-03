@@ -1,89 +1,48 @@
 /// <reference path="../typings/tsd.d.ts" />
 
+import { IAppState, IAppAction, IDiagramShape, toggleWidth } from './dux/AppDux';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as d3 from 'd3';
-import { IAppState, IAppNode } from './app';
+import * as Redux from 'redux';
+import { connect } from 'react-redux';
 
-export class Diagram extends React.Component<IAppState, {}> {
 
-  static displayName = 'Diagram';
+interface IDiagramActions {
+    toggleWidth?: (id:number) => void;
+}
 
-  static propTypes = {
-    data: React.PropTypes.array,
-  };
+interface IDiagramProps extends IAppState, IDiagramActions, React.Props<Diagram> {}
 
-  constructor (props) {
-    super(props);
-  }
+@connect(
+    Diagram.mapStateToProps,
+    Diagram.mapDispatchToProps,
+    Diagram.mergeProps
+)
+export class Diagram extends React.Component<IDiagramProps, {}> {
 
-  private static _createDiagram (el, state) {
-      var svg = d3.select(el)
-          .attr('width', 400)
-          .attr('height', 400);
-      svg.append('g')
-          .attr('class', 'diagram-nodes');
-      Diagram._updateDiagram(el, state);
-  }
+     public static mapStateToProps(state: IAppState, props: IDiagramProps): IDiagramProps {
+        return state;
+    }
+    
+    public static mapDispatchToProps(dispatch, ownProps: IDiagramProps): IDiagramActions {
+        return Redux.bindActionCreators({ 
+            toggleWidth: toggleWidth
+        }, dispatch);
+    }
 
-  private static _updateDiagram (el, state) {
-      var g = d3.select(el).selectAll('.diagram-nodes');
+    public static mergeProps(stateProps: IDiagramProps, dispatchProps: IDiagramActions, ownProps: IDiagramProps): IDiagramProps {
+        return Object.assign({}, stateProps, dispatchProps);
+    }
 
-      var node = g.selectAll('.diagram-node')
-          .data(state.data, function(d: IAppNode) { return d.id.toString(); });
-
-        // enter
-        node.enter()
-            .append('rect')
-            .attr('class', 'diagram-node');
-
-        // enter and update
-        node
-            .attr('x', function(d) { return d.x; })
-            .attr('y', function(d) { return d.y; })
-            .attr('width', function(d) { return d.w; })
-            .attr('height', function(d) { return d.h; });
-
-        // exit
-        node.exit()
-            .remove();
-
-  }
-
-  private static _destroyDiagram (el) {
-      var svg = d3.select(el);
-      svg.remove();
-  }
-
-  private getDOMNode () {
-    return ReactDOM.findDOMNode(this);
-  }
-
-  public componentDidMount () {
-      var el = this.getDOMNode();
-      Diagram._createDiagram(el, this.getChartState());
-  }
-
-  public shouldComponentUpdate() {
-      var el = this.getDOMNode();
-      Diagram._updateDiagram(el, this.getChartState());
-      return false;
-  }
-
-  public getChartState () {
-      return {
-        data: this.props.data,
-      };
-  }
-
-  public componentWillUnmount () {
-      var el = this.getDOMNode();
-      Diagram._destroyDiagram(el);
-  }
-
-  public render () {
-    return (
-      <svg className="diagram"></svg>
-    );
+    public render () {
+        return (
+            <svg className="diagram">
+                <g className="diagram-nodes">
+                {
+                    this.props.shapes.map((d, i, arr) =>
+                        <rect className="diagram-node" key={d.id} x={d.x} y={d.y} width={d.w} height={d.h} onClick={ () => this.props.toggleWidth(d.id) } />)
+                }
+                </g>
+            </svg>
+        );
   }
 }
