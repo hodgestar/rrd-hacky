@@ -28,10 +28,10 @@ export function appReducer(state: IAppState, action: IAppAction) {
             var i = state.shapes.findIndex((shape: IDiagramShape) => {
                 return shape.id === action.id;
             });
-            var shapesCopy = state.shapes.slice(0);
-            var toggleItem = shapesCopy[i];
-            toggleItem.w = toggleItem.w === 40 ? 80 : 40;
-            shapesCopy.splice(i, 1, toggleItem);
+            var itemToToggle = state.shapes[i];
+            var toggledItem = Object.assign({}, itemToToggle, { w: itemToToggle.w === 40 ? 80 : 40 });
+            var shapesCopy = state.shapes.slice();
+            shapesCopy.splice(i, 1, toggledItem);
             return {
                 shapes: shapesCopy
             };
